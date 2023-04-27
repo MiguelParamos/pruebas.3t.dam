@@ -1,6 +1,7 @@
 package prueba.bd.dam;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import utils.DAO;
@@ -25,7 +26,11 @@ public class Principal {
 					System.out.println("Dime nick");
 					String nick = sc.nextLine();
 
-					DAO.insert("insert into user values('" + email + "','" + pass + "','" + nick + "')");
+					HashMap<String,String> columnas=new HashMap<String,String>();
+					columnas.put("email",email);
+					columnas.put("pass", pass);
+					columnas.put("nick", nick);
+					DAO.insert("user",columnas);
 
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -36,7 +41,12 @@ public class Principal {
 				try {
 					System.out.println("Dime el email del usuario que quieres borrar");
 					String email = sc.nextLine();
-					int filasBorradas=DAO.delete("delete from user where email='" + email + "'");
+					
+					HashMap<String,String> campos=new HashMap<String,String>();
+					campos.put("email", email);
+					int filasBorradas=DAO.delete("user",campos);
+					
+					
 					System.out.println("Se han borrado "+filasBorradas+" filas.");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
