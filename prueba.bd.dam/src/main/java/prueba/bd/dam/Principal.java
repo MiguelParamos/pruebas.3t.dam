@@ -26,11 +26,11 @@ public class Principal {
 					System.out.println("Dime nick");
 					String nick = sc.nextLine();
 
-					HashMap<String,String> columnas=new HashMap<String,String>();
+					HashMap<String,Object> columnas=new HashMap<String,Object>();
 					columnas.put("email",email);
 					columnas.put("pass", pass);
 					columnas.put("nick", nick);
-					DAO.insert("user",columnas);
+					DAO.insertar("user",columnas);
 
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -42,9 +42,9 @@ public class Principal {
 					System.out.println("Dime el email del usuario que quieres borrar");
 					String email = sc.nextLine();
 					
-					HashMap<String,String> campos=new HashMap<String,String>();
+					HashMap<String,Object> campos=new HashMap<String,Object>();
 					campos.put("email", email);
-					int filasBorradas=DAO.delete("user",campos);
+					int filasBorradas=DAO.borrar("user",campos);
 					
 					
 					System.out.println("Se han borrado "+filasBorradas+" filas.");
